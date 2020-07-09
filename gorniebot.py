@@ -16,7 +16,7 @@ BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.NXT_ULTRASONIC) # Configure for ult
 
 
 try:
-    print("Press touch sensor on port 1 to run motors")
+    print("Press touch sensor on port 1 to start")
     touch_input = 0 # value received from touch sensor, indicates how far sensor is pressed
     ultrasonic_input = 0 # value received from ultrasonic senso, indicates how far away objects are from the sensor
 
@@ -31,8 +31,8 @@ try:
     while True:
         # Get input from ultrasonic sensor
         try:
-            value = BP.get_sensor(BP.PORT_2)
-            print(value)                      # print the distance in CM
+            distance = BP.get_sensor(BP.PORT_2) # get distance to closest object in CM, with 255 CM as max range
+            print(f'Closest object is {distance} CM away')
         except brickpi3.SensorError as error:
             print(error)
 
@@ -52,14 +52,7 @@ try:
             speed = 50    
         
         # Set the motor speed for all four motors
-        BP.set_motor_power(BP.PORT_A + BP.PORT_B + BP.PORT_C + BP.PORT_D, speed)
-        
-        # try:
-        #     # Each of the following BP.get_motor_encoder functions returns the encoder touch_input (what we want to display).
-        #     #print("Encoder A: %6d  B: %6d  C: %6d  D: %6d" % (BP.get_motor_encoder(BP.PORT_A), BP.get_motor_encoder(BP.PORT_B), BP.get_motor_encoder(BP.PORT_C), BP.get_motor_encoder(BP.PORT_D)))
-        #     print()
-        # except IOError as error:
-        #     print(error)    
+        BP.set_motor_power(BP.PORT_A + BP.PORT_B + BP.PORT_C + BP.PORT_D, speed) 
         
         time.sleep(0.02)  # delay for 0.02 seconds (20ms) to reduce the Raspberry Pi CPU load.
 
