@@ -7,6 +7,7 @@
 
 # When this runs, the motor(s) speed will ramp up and down while the touch sensor is pressed. The position for each motor will be printed.
 import brickpi3
+import time
 
 BP = brickpi3.BrickPi3()
 
@@ -50,7 +51,7 @@ try:
             # Each of the following BP.get_motor_encoder functions returns the encoder value (what we want to display).
             print("Encoder A: %6d  B: %6d  C: %6d  D: %6d" % (BP.get_motor_encoder(BP.PORT_A), BP.get_motor_encoder(BP.PORT_B), BP.get_motor_encoder(BP.PORT_C), BP.get_motor_encoder(BP.PORT_D)))
         except IOError as error:
-            print(error)
+            print(error)    
         
         time.sleep(0.02)  # delay for 0.02 seconds (20ms) to reduce the Raspberry Pi CPU load.
 
