@@ -30,7 +30,7 @@ try:
     speed = 50
     while True:
         # Get input from ultrasonic sensor
-         try:
+        try:
             value = BP.get_sensor(BP.PORT_2)
             print(value)                      # print the distance in CM
         except brickpi3.SensorError as error:
