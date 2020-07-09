@@ -32,7 +32,7 @@ try:
         # Get input from ultrasonic sensor
         try:
             distance = BP.get_sensor(BP.PORT_2) # get distance to closest object in CM, with 255 CM as max range
-            print(f'Closest object is {distance} CM away')
+            print("Closest object is %i CM away" % distance)
         except brickpi3.SensorError as error:
             print(error)
 
